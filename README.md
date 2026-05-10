@@ -27,65 +27,140 @@
 ....
 
 
+Step 1 — Configure the Trigger
+You'll now see the trigger card open.
 
-Flow: VTT → TXT Converter
-Trigger
-"When a file is created (properties only)"
-
-Site: Your SharePoint site
-Library: Your VTT/Recordings Transcription library
+Site Address → Select your SharePoint site from the dropdown
+Library Name → Select your VTT transcription document library
 
 
-Step 1 — Condition: Check file is .vtt
-Add a Condition action:
-endsWith(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt')
+Step 2 — Add a Condition
 
-Everything below goes inside the Yes branch
+Click "+ New step"
+Search for "Condition"
+Select the Condition control action
+In the condition box, click on the first field (left side)
+Click "Expression" tab in the dynamic content popup
+Paste this:
+
+triggerOutputs()?['body/{FilenameWithExtension}']
+
+Click OK
+The middle dropdown — set it to "ends with"
+In the right field, type:
+
+.vtt
+
+Everything from this point goes inside the "If yes" branch
 
 
-Step 2 — Get File Content
-"Get file content using path" (SharePoint)
+Step 3 — Get File Content
 
-Site: Your SharePoint site
-File Path: triggerOutputs()?['body/{FullPath}']
+Inside the "If yes" branch, click "Add an action"
+Search for "Get file content using path"
+Select "Get file content using path — SharePoint"
+Site Address → Select your SharePoint site
+File Path → Click the field, go to Dynamic content tab, and select "Full Path"
 
 
-Step 3 — Compose: Decode to Text
-Compose action — Name it Decode VTT Content
-base64ToString(body('Get_file_content')?['$content'])
+Step 4 — Compose: Decode VTT Content
 
-Step 4 — Compose: Split into Lines
-Compose action — Name it Split Lines
+Click "Add an action"
+Search for "Compose"
+Select "Compose — Data Operation"
+Click on the Inputs field
+Go to Expression tab and paste:
+
+base64ToString(body('Get_file_content_using_path')?['$content'])
+
+Click OK
+Rename this Compose step to Decode VTT Content
+
+Click the three dots (...) on the top right of the card → Rename
+
+
+
+
+Step 5 — Compose: Split Lines
+
+Click "Add an action"
+Add another Compose action
+Click the Inputs field
+Go to Expression tab and paste:
+
 split(outputs('Decode_VTT_Content'), decodeUriComponent('%0A'))
 
-This splits the file content line by line
+Click OK
+Rename this step to Split Lines
 
 
-Step 5 — Filter Array: Remove VTT Formatting Lines
-Filter Array action
+Step 6 — Filter Array
 
-From: outputs('Split_Lines')
-Switch to Advanced Mode and paste:
+Click "Add an action"
+Search for "Filter array"
+Select "Filter array — Data Operation"
+In the From field → go to Expression tab and paste:
+
+outputs('Split_Lines')
+
+Click OK
+Now click "Edit in advanced mode" (small link below the condition row)
+Replace whatever is there with:
 
 @and(
   not(contains(item(), '-->')),
   not(equals(trim(item()), 'WEBVTT')),
   not(equals(trim(item()), ''))
 )
-This removes:
 
-WEBVTT header line
-Timestamp lines like 00:00:01.000 --> 00:00:04.000
-Blank lines
+Click OK
 
 
-Step 6 — Compose: Join Lines into Clean Text
-Compose action — Name it Clean Text
+Step 7 — Compose: Join Clean Text
+
+Click "Add an action"
+Add another Compose action
+Click the Inputs field
+Go to Expression tab and paste:
+
 join(body('Filter_array'), decodeUriComponent('%0A'))
 
-Step 7 — Compose: Build TXT Filename
-Compose action — Name it TXT Filename
-concat(
-  replace(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt', ''),
-  '.txt'
-)
+Click OK
+Rename this step to Clean Text
+
+
+Step 8 — Compose: Build TXT Filename
+
+Click "Add an action"
+Add another Compose action
+Click the Inputs field
+Go to Expression tab and paste:
+
+concat(replace(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt', ''), '.txt')
+
+Click OK
+Rename this step to TXT Filename
+
+
+Step 9 — Create File in TXT Library
+
+Click "Add an action"
+Search for "Create file"
+Select "Create file — SharePoint"
+Site Address → Select your SharePoint site
+Folder Path → Type the name of your TXT document library
+
+Example: /Transcriptions-TXT
+Or click the folder icon to browse and select it
+
+
+File Name field → Go to Expression tab and paste:
+
+outputs('TXT_Filename')
+
+Click OK
+File Content field → Go to Expression tab and paste:
+
+outputs('Clean_Text')
+
+Click OK
