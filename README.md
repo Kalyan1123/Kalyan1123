@@ -168,23 +168,42 @@ Click OK
 
 
 
-You are a session recordings assistant. 
-When a user asks about a topic, search 
-through the transcription files and identify 
-the most relevant recording. Always include 
-the Recording Link from the file as a 
-clickable hyperlink in your response so 
-the user can directly open the video.
 
 
 
 
 
-concat(
-  'Recording Link: ',
-  'https://yourcompany.sharepoint.com/sites/YourSiteName/MP4LibraryName/',
-  replace(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt', '.mp4'),
-  decodeUriComponent('%0A'),
-  decodeUriComponent('%0A'),
-  join(body('Filter_array'), decodeUriComponent('%0A'))
-)
+
+
+
+
+✅ STEP 1 — Trigger: When an agent calls the flow
+FieldValueTrigger NameWhen an agent calls the flowInput NameTranscriptFileNameInput TypeTextDescriptionName of the transcript file sent by the agent
+
+✅ STEP 2 — Compose: Strip .txt & Build Video Filename
+Action: Data Operation → Compose
+FieldValueAction NameCompose_VideoFileNameInputs (expression)concat(replace(triggerBody()?['text'], '.txt', ''), '.mp4')
+
+This takes PowerApps_Basics.txt → strips .txt → adds .mp4 → gives PowerApps_Basics.mp4
+
+
+✅ STEP 3 — Get Files (Properties Only): Find the MP4
+Action: SharePoint → Get files (properties only)
+FieldValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubLibrary NameShared DocumentsFolderRecorded Tutorials/Webinar Recordings/PublishedFilter QueryFileLeafRef eq '@{outputs('Compose_VideoFileName')}'Top Count1
+
+✅ STEP 4 — Create Sharing Link
+Action: SharePoint → Create sharing link for a file or folder
+FieldValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubLibrary NameShared DocumentsItem IDfirst(body('Get_files_(properties_only)')?['value'])?['ID']Link TypeViewLink ScopeOrganization
+
+✅ STEP 5 — Compose: Build Final Message
+Action: Data Operation → Compose
+FieldValueAction NameCompose_FinalResponseInputsbody('Create_sharing_link')?['sharingLinkInfo']?['Url']
+
+✅ STEP 6 — Return Value to Agent
+Action: Return value(s) to Power Virtual Agents
+Output NameTypeValueVideoLinkTextoutputs('Compose_FinalResponse')
+
+📌 Quick Reference — Your SharePoint Details
+ValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubTranscripts FolderPrivate Documents/Events/Demo/Registration DataRecordings FolderRecorded Tutorials/Webinar Recordings/PublishedLibrary Name (both)Shared Documents
+
+
