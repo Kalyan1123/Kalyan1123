@@ -175,3 +175,16 @@ the most relevant recording. Always include
 the Recording Link from the file as a 
 clickable hyperlink in your response so 
 the user can directly open the video.
+
+
+
+
+
+concat(
+  'Recording Link: ',
+  'https://yourcompany.sharepoint.com/sites/YourSiteName/MP4LibraryName/',
+  replace(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt', '.mp4'),
+  decodeUriComponent('%0A'),
+  decodeUriComponent('%0A'),
+  join(body('Filter_array'), decodeUriComponent('%0A'))
+)
