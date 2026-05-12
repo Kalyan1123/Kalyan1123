@@ -215,3 +215,6 @@ GLW-Switching from Tableau to PBI.txt
 
 
 concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{Path}'])
+
+
+concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{FullPath}'])
