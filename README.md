@@ -251,4 +251,9 @@ If this change was already planned, I wish I had been informed earlier before I 
 
 Because of this sudden change, both flows have now crashed, and I need to reconfigure everything again from the beginning.
 
+Hi Sailaja,
+
+As you know, I created both of the flows for converting .vtt files to .txt files and fetching the correct recording links. After the flows were created, Ashrita moved the existing “test folder” containing the .vtt files to a new “Transcription Files” folder, and I was informed only after the changes were made.
+
+If this change was already planned, I wish I had been informed earlier before I started creating and configuring these flows. Because of this sudden change, both flows have now crashed, and now I need to reconfigure everything again from the beginning.
 
