@@ -207,3 +207,6 @@ Output NameTypeValueVideoLinkTextoutputs('Compose_FinalResponse')
 ValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubTranscripts FolderPrivate Documents/Events/Demo/Registration DataRecordings FolderRecorded Tutorials/Webinar Recordings/PublishedLibrary Name (both)Shared Documents
 
 
+You are a learning assistant for PowerHub. Search through session transcripts to answer user questions. Always provide the relevant video recording link along with your answer.
+
+
