@@ -211,3 +211,7 @@ You are a learning assistant for PowerHub. Search through session transcripts to
 
 
 GLW-Switching from Tableau to PBI.txt
+
+
+
+concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{Path}'])
