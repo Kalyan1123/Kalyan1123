@@ -225,3 +225,22 @@ concat('https://organizationcloud.sharepoint.com/teams/powerhub/', replace(items
 
 
 items('For_each')?['{Link}']
+
+
+Hi Sailaja,
+
+As you know, I created both of the flows that are currently running — one to convert the existing .vtt files to .txt files, and another to fetch the correct recording links.
+
+Unfortunately, Ashrita made changes in SharePoint without informing me earlier. She moved the existing test folder’s .vtt content into a new folder called “Transcription Files.” If this change was already planned or known, I really wish I had been informed before I started creating and configuring these flows. It would have saved a lot of time and effort.
+
+Because of this sudden change, both of the flows have now crashed, and I need to reconfigure everything again from the beginning. I’m honestly very frustrated and disappointed, as a lot of work has been impacted due to a change that was not communicated in advance.
+
+
+
+
+Hi Sailaja,
+
+As you know, I created both of the flows for converting .vtt to .txt files and fetching the correct recording links. Unfortunately, Ashrita moved the existing .vtt files from the test folder to a new “Transcription Files” folder without informing me earlier. Because of this change, both flows crashed, and now I have to reconfigure everything again from the beginning.
+
+I’m really frustrated because this could have been avoided if the change had been communicated earlier.
+
