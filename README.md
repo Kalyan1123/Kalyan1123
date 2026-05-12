@@ -221,3 +221,7 @@ concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{FullPat
 
 
 concat('https://organizationcloud.sharepoint.com/teams/powerhub/', replace(items('For_each')?['{FullPath}'], ' ', '%20'))
+
+
+
+items('For_each')?['{Link}']
