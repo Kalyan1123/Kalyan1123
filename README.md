@@ -210,3 +210,4 @@ ValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubTranscri
 You are a learning assistant for PowerHub. Search through session transcripts to answer user questions. Always provide the relevant video recording link along with your answer.
 
 
+GLW-Switching from Tableau to PBI.txt
