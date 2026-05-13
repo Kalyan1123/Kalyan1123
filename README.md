@@ -257,3 +257,5 @@ As you know, I created both of the flows for converting .vtt files to .txt files
 
 If this change was already planned, I wish I had been informed earlier before I started creating and configuring these flows. Because of this sudden change, both flows have now crashed, and now I need to reconfigure everything again from the beginning.
 
+
+@endswith(item()?['Name'], '.vtt')
