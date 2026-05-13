@@ -261,3 +261,5 @@ If this change was already planned, I wish I had been informed earlier before I 
 @endswith(item()?['{FilenameWithExtension}'], '.vtt')
 
 split(outputs('Compose_RawText'), decodeUriComponent('%0A'))
+
+replace(string(items('Apply_to_each')?['{FilenameWithExtension}']), '.vtt', '.txt')
