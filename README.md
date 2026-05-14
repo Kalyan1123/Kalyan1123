@@ -53,3 +53,14 @@ Rename to: Compose Oneline
 Step 10: Add Create TXT File
 Below Compose Oneline, + Add an action → SharePoint → Create file.
 FieldValueSite AddressSame siteFolder PathClick the folder picker icon 📁 → browse to AllTranscripts_TXT (your target folder)File NameExpression: replace(string(triggerOutputs()?['body/{FilenameWithExtension}']), '.vtt', '.txt')File ContentExpression: outputs('Compose_Oneline')
+
+
+
+
+{
+  "id": "@{item()?['Session ID']}",
+  "technology": "@{item()?['Technology']}",
+  "query": "@{item()?['Query']}",
+  "solution": "@{item()?['Solution']}",
+  "articles": "@{item()?['MyHub Assist Articles']}"
+}
