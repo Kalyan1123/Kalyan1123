@@ -237,29 +237,4 @@ Because of this sudden change, both of the flows have now crashed, and I need to
 
 
 
-
-Hi Sailaja,
-
-As you know, I created both of the flows for converting .vtt to .txt files and fetching the correct recording links. Unfortunately, Ashrita moved the existing .vtt files from the test folder to a new “Transcription Files” folder without informing me earlier. Because of this change, both flows crashed, and now I have to reconfigure everything again from the beginning.
-
-I’m really frustrated because this could have been avoided if the change had been communicated earlier.
-
-
-As you know, I created both of the flows for converting .vtt files to .txt files and fetching the correct recording links. Later, Ashrita moved the existing “test folder” containing the .vtt files to a new “Transcription Files” folder, and I was informed only after the changes were made.
-
-If this change was already planned, I wish I had been informed earlier before I started creating and configuring these flows.
-
-Because of this sudden change, both flows have now crashed, and I need to reconfigure everything again from the beginning.
-
-Hi Sailaja,
-
-As you know, I created both of the flows for converting .vtt files to .txt files and fetching the correct recording links. After the flows were created, Ashrita moved the existing “test folder” containing the .vtt files to a new “Transcription Files” folder, and I was informed only after the changes were made.
-
-If this change was already planned, I wish I had been informed earlier before I started creating and configuring these flows. Because of this sudden change, both flows have now crashed, and now I need to reconfigure everything again from the beginning.
-
-
-@endswith(item()?['{FilenameWithExtension}'], '.vtt')
-
-split(outputs('Compose_RawText'), decodeUriComponent('%0A'))
-
-replace(string(items('Apply_to_each')?['{FilenameWithExtension}']), '.vtt', '.txt')
+endswith(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt')
