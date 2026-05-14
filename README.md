@@ -133,3 +133,6 @@ If yes branch: Initialize variables (or use Compose) with:
 MatchFound = true
 Solution = first(body('Find_Match'))?['solution']
 ArticleLinks = first(body('Find_Match'))?['articles']
+
+
+first(body('Find_Match'))?['solution']
