@@ -26,6 +26,10 @@
 ..
 ....
 
+split(outputs('Compose_RawText'), decodeUriComponent('%0A'))
+
+
+outputs('Compose_Lines')
 
 @and(
   greater(length(trim(item())), 0),
