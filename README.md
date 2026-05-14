@@ -100,3 +100,6 @@ how do I set up a connection in a dedicated environment
     "solution": "sample solution text",
     "articles": "https://example.com"
   }
+
+
+@contains(toLower(item()?['query']), toLower(triggerBody()['text']))
