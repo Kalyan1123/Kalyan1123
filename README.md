@@ -74,3 +74,14 @@ You match a user question against a knowledge base of past Q&A pairs.
    User question:
 
    Knowledge base entries (JSON array):
+
+
+Task:
+   - Find the entry whose "query" best answers the user's question.
+   - A strong match means the user's intent clearly aligns with the entry's query, not just shared keywords.
+   - If a strong match exists, respond ONLY with this exact JSON shape:
+     {"matchFound": true, "solution": "<solution text>", "articles": "<articles text or empty string if none>"}
+   - If no entry strongly matches, respond ONLY with:
+     {"matchFound": false, "solution": "", "articles": ""}
+
+   Do not add markdown, code fences, or any text outside the JSON.
