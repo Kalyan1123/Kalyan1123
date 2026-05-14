@@ -103,3 +103,8 @@ how do I set up a connection in a dedicated environment
 
 
 @contains(toLower(item()?['query']), toLower(triggerBody()['text']))
+
+
+
+
+if(empty(body('Find_Match')), json('{"matchFound":false,"solution":"","articles":""}'), json(concat('{"matchFound":true,"solution":', string(first(body('Find_Match'))?['solution']), ',"articles":', string(first(body('Find_Match'))?['articles']), '}')))
