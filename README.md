@@ -72,3 +72,5 @@ FieldValueSite AddressSame siteFolder PathClick the folder picker icon 📁 → 
 You match a user question against a knowledge base of past Q&A pairs.
 
    User question:
+
+   Knowledge base entries (JSON array):
