@@ -238,3 +238,5 @@ Because of this sudden change, both of the flows have now crashed, and I need to
 
 
 endswith(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt')
+
+string(body('Get_file_content'))
