@@ -108,3 +108,28 @@ how do I set up a connection in a dedicated environment
 
 
 if(empty(body('Find_Match')), json('{"matchFound":false,"solution":"","articles":""}'), json(concat('{"matchFound":true,"solution":', string(first(body('Find_Match'))?['solution']), ',"articles":', string(first(body('Find_Match'))?['articles']), '}')))
+
+
+
+
+Actually, let's keep it simpler — replace Pick_Result with this much cleaner approach:
+
+Add a Condition node:
+
+Left: length(body('Find_Match'))
+Operator: is greater than
+Right: 0
+
+
+
+
+
+If yes branch: Initialize variables (or use Compose) with:
+
+
+
+
+
+MatchFound = true
+Solution = first(body('Find_Match'))?['solution']
+ArticleLinks = first(body('Find_Match'))?['articles']
