@@ -136,3 +136,11 @@ ArticleLinks = first(body('Find_Match'))?['articles']
 
 
 first(body('Find_Match'))?['solution']
+
+
+
+@or(contains(toLower(item()?['query']),toLower(triggerBody()['text'])),contains(toLower(triggerBody()['text']),toLower(item()?['query'])))
+
+
+
+@greater(length(intersection(split(toLower(triggerBody()['text']),' '),split(toLower(item()?['query']),' '))),2)
