@@ -127,7 +127,7 @@ Right: 0
 If yes branch: Initialize variables (or use Compose) with:
 
 
-
+@greater(length(intersection(split(toLower(triggerBody()['text']), ' '), split(toLower(item()?['query']), ' '))), 2)
 
 
 MatchFound = true
