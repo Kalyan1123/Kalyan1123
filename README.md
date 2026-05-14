@@ -64,3 +64,11 @@ FieldValueSite AddressSame siteFolder PathClick the folder picker icon 📁 → 
   "solution": "@{item()?['Solution']}",
   "articles": "@{item()?['MyHub Assist Articles']}"
 }
+
+
+
+
+
+You match a user question against a knowledge base of past Q&A pairs.
+
+   User question:
