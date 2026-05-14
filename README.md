@@ -85,3 +85,9 @@ Task:
      {"matchFound": false, "solution": "", "articles": ""}
 
    Do not add markdown, code fences, or any text outside the JSON.
+
+
+how do I set up a connection in a dedicated environment
+
+
+[{"id":"1","query":"setup connections in dedicated environment","solution":"Use a service account for connections. Once created, you do not need to recreate it unless new connections are added.","articles":"https://myhub.example.com/article/123"}]
