@@ -176,65 +176,18 @@ Click OK
 
 
 
-
-✅ STEP 1 — Trigger: When an agent calls the flow
-FieldValueTrigger NameWhen an agent calls the flowInput NameTranscriptFileNameInput TypeTextDescriptionName of the transcript file sent by the agent
-
-✅ STEP 2 — Compose: Strip .txt & Build Video Filename
-Action: Data Operation → Compose
-FieldValueAction NameCompose_VideoFileNameInputs (expression)concat(replace(triggerBody()?['text'], '.txt', ''), '.mp4')
-
-This takes PowerApps_Basics.txt → strips .txt → adds .mp4 → gives PowerApps_Basics.mp4
-
-
-✅ STEP 3 — Get Files (Properties Only): Find the MP4
-Action: SharePoint → Get files (properties only)
-FieldValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubLibrary NameShared DocumentsFolderRecorded Tutorials/Webinar Recordings/PublishedFilter QueryFileLeafRef eq '@{outputs('Compose_VideoFileName')}'Top Count1
-
-✅ STEP 4 — Create Sharing Link
-Action: SharePoint → Create sharing link for a file or folder
-FieldValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubLibrary NameShared DocumentsItem IDfirst(body('Get_files_(properties_only)')?['value'])?['ID']Link TypeViewLink ScopeOrganization
-
-✅ STEP 5 — Compose: Build Final Message
-Action: Data Operation → Compose
-FieldValueAction NameCompose_FinalResponseInputsbody('Create_sharing_link')?['sharingLinkInfo']?['Url']
-
-✅ STEP 6 — Return Value to Agent
-Action: Return value(s) to Power Virtual Agents
-Output NameTypeValueVideoLinkTextoutputs('Compose_FinalResponse')
-
-📌 Quick Reference — Your SharePoint Details
-ValueSite Addresshttps://organizationcloud.sharepoint.com/teams/powerhubTranscripts FolderPrivate Documents/Events/Demo/Registration DataRecordings FolderRecorded Tutorials/Webinar Recordings/PublishedLibrary Name (both)Shared Documents
-
-
-You are a learning assistant for PowerHub. Search through session transcripts to answer user questions. Always provide the relevant video recording link along with your answer.
-
-
-GLW-Switching from Tableau to PBI.txt
-
-
-
-concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{Path}'])
-
-
-concat('https://organizationcloud.sharepoint.com/', items('For_each')?['{FullPath}'])
-
-
-concat('https://organizationcloud.sharepoint.com/teams/powerhub/', replace(items('For_each')?['{FullPath}'], ' ', '%20'))
-
-
-
-items('For_each')?['{Link}']
-
-
-Hi Sailaja,
-
-As you know, I created both of the flows that are currently running — one to convert the existing .vtt files to .txt files, and another to fetch the correct recording links.
-
-Unfortunately, Ashrita made changes in SharePoint without informing me earlier. She moved the existing test folder’s .vtt content into a new folder called “Transcription Files.” If this change was already planned or known, I really wish I had been informed before I started creating and configuring these flows. It would have saved a lot of time and effort.
-
-Because of this sudden change, both of the flows have now crashed, and I need to reconfigure everything again from the beginning. I’m honestly very frustrated and disappointed, as a lot of work has been impacted due to a change that was not communicated in advance.
-
+@and(
+  greater(length(trim(item())), 0),
+  not(contains(item(), '-->')),
+  not(equals(trim(item()), 'WEBVTT')),
+  or(
+    contains(toLower(item()), 'a'),
+    contains(toLower(item()), 'e'),
+    contains(toLower(item()), 'i'),
+    contains(toLower(item()), 'o'),
+    contains(toLower(item()), 'u')
+  )
+)
 
 
 endswith(triggerOutputs()?['body/{FilenameWithExtension}'], '.vtt')
