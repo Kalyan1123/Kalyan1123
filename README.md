@@ -144,3 +144,19 @@ first(body('Find_Match'))?['solution']
 
 
 @greater(length(intersection(split(toLower(triggerBody()['text']),' '),split(toLower(item()?['query']),' '))),2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+trim(toLower(replace(replace(replace(replace(replace(triggerBody()['text'],'.txt',''),'-',' '),'_',' '),'(',''),')','')))
