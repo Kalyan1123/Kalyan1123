@@ -181,3 +181,9 @@ At the very end, on a new line, include:
 TranscriptFile: <exact filename without the .txt extension>
 
 If the transcripts don't contain an answer to the user's question, reply with the single text NOT_FOUND.
+
+
+
+
+
+Trim(Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15))
