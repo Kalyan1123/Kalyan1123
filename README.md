@@ -160,3 +160,12 @@ trim(toLower(replace(replace(replace(replace(replace(triggerBody()['text'],'.txt
 
 
 if(empty(body('Find_Video')),'',first(body('Find_Video'))?['{Link}'])
+
+
+
+This topic answers user questions by searching the Power Hour knowledge base 
+(Excel) and the training session transcripts. It returns step-by-step 
+solutions, related article links, and links to recorded session videos when 
+relevant. Use this topic for any user question about how to do something, 
+troubleshooting an error, or learning about a Power Platform, Fabric, 
+Copilot, or Dynamics topic.
