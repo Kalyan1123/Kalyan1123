@@ -150,13 +150,9 @@ first(body('Find_Match'))?['solution']
 
 
 
-
-
-
-
-
-
-
-
-
 trim(toLower(replace(replace(replace(replace(replace(triggerBody()['text'],'.txt',''),'-',' '),'_',' '),'(',''),')','')))
+
+
+
+
+@and(endsWith(toLower(item()?['{FilenameWithExtension}']),'.mp4'),contains(toLower(replace(replace(replace(replace(item()?['{FilenameWithExtension}'],'-',' '),'_',' '),'(',''),')','')),outputs('Clean_Name')))
