@@ -200,3 +200,8 @@ If(
     ),
     ""
 )
+
+
+
+
+If the transcripts don't contain an answer to the user's question, your ENTIRE response must be the single word NOT_FOUND — exactly that, all uppercase, with NO punctuation, NO whitespace, NO quotes, NO other text before or after.
