@@ -156,3 +156,7 @@ trim(toLower(replace(replace(replace(replace(replace(triggerBody()['text'],'.txt
 
 
 @and(endsWith(toLower(item()?['{FilenameWithExtension}']),'.mp4'),contains(toLower(replace(replace(replace(replace(item()?['{FilenameWithExtension}'],'-',' '),'_',' '),'(',''),')','')),outputs('Clean_Name')))
+
+
+
+if(empty(body('Find_Video')),'',first(body('Find_Video'))?['{Link}'])
