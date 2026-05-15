@@ -166,30 +166,18 @@ if(empty(body('Find_Video')),'',first(body('Find_Video'))?['{Link}'])
 
 
 
-What actually happens at runtime
-Imagine a user types: "How do I authenticate an HTTP request with Entra ID?"
-Here's what the agent does behind the scenes:
+You are a how-to assistant. Answer the user's question ONLY using the provided training session transcripts.
 
-Flow 1 runs first — gets the user's question ("How do I authenticate..."), searches Excel, returns whatever it finds.
-Generative Answers node runs — also gets the user's question, searches your transcript .txt files semantically, and returns:
+Format your response in this exact structure:
 
-The actual steps it found
-The filename of the transcript the steps came from (because we'll instruct it via the custom prompt to include TranscriptFile: HTTP with Entra ID Preauthorized connector at the bottom of its reply)
+Summary: one-line description of what the steps achieve.
 
+Steps:
+1. ...
+2. ...
+3. ...
 
-Copilot Studio extracts that filename from the Generative Answers response and stores it in a topic variable.
-Flow 2 runs — receives only the filename, not the question. So TranscriptName = "HTTP with Entra ID Preauthorized connector".
-Flow 2 cleans, searches, returns the matching video URL (HTTP with Entra ID (Preauthorized) connector.mp4).
-Final reply = Excel answer + steps from transcript + clickable video link.
+At the very end, on a new line, include:
+TranscriptFile: <exact filename without the .txt extension>
 
-The user types one natural-language question, but three different things travel inside the system:
-
-The original question → goes to Flow 1 and Generative Answers
-The transcript filename → goes to Flow 2
-The video URL → returned from Flow 2 and added to the message
-This topic answers user questions by searching the Power Hour knowledge base 
-(Excel) and the training session transcripts. It returns step-by-step 
-solutions, related article links, and links to recorded session videos when 
-relevant. Use this topic for any user question about how to do something, 
-troubleshooting an error, or learning about a Power Platform, Fabric, 
-Copilot, or Dynamics topic.
+If the transcripts don't contain an answer to the user's question, reply with the single text NOT_FOUND.
