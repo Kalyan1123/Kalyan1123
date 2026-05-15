@@ -187,3 +187,16 @@ If the transcripts don't contain an answer to the user's question, reply with th
 
 
 Trim(Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15))
+
+
+
+If(
+    Find("TranscriptFile:", Topic.GenAnswer) > 0,
+    Trim(
+        Mid(
+            Topic.GenAnswer,
+            Find("TranscriptFile:", Topic.GenAnswer) + 15
+        )
+    ),
+    ""
+)
