@@ -163,6 +163,30 @@ if(empty(body('Find_Video')),'',first(body('Find_Video'))?['{Link}'])
 
 
 
+
+
+
+What actually happens at runtime
+Imagine a user types: "How do I authenticate an HTTP request with Entra ID?"
+Here's what the agent does behind the scenes:
+
+Flow 1 runs first — gets the user's question ("How do I authenticate..."), searches Excel, returns whatever it finds.
+Generative Answers node runs — also gets the user's question, searches your transcript .txt files semantically, and returns:
+
+The actual steps it found
+The filename of the transcript the steps came from (because we'll instruct it via the custom prompt to include TranscriptFile: HTTP with Entra ID Preauthorized connector at the bottom of its reply)
+
+
+Copilot Studio extracts that filename from the Generative Answers response and stores it in a topic variable.
+Flow 2 runs — receives only the filename, not the question. So TranscriptName = "HTTP with Entra ID Preauthorized connector".
+Flow 2 cleans, searches, returns the matching video URL (HTTP with Entra ID (Preauthorized) connector.mp4).
+Final reply = Excel answer + steps from transcript + clickable video link.
+
+The user types one natural-language question, but three different things travel inside the system:
+
+The original question → goes to Flow 1 and Generative Answers
+The transcript filename → goes to Flow 2
+The video URL → returned from Flow 2 and added to the message
 This topic answers user questions by searching the Power Hour knowledge base 
 (Excel) and the training session transcripts. It returns step-by-step 
 solutions, related article links, and links to recorded session videos when 
