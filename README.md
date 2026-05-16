@@ -205,3 +205,13 @@ If(
 
 
 If the transcripts don't contain an answer to the user's question, your ENTIRE response must be the single word NOT_FOUND — exactly that, all uppercase, with NO punctuation, NO whitespace, NO quotes, NO other text before or after.
+
+
+
+
+If(Topic.ExcelMatchFound, "**From the knowledge base:**" & Char(10) & Char(10) & Topic.ExcelSolution & Char(10) & Char(10), "") &
+If(Topic.ExcelMatchFound And Not(IsBlank(Topic.ExcelArticles)), "**Related articles:** " & Topic.ExcelArticles & Char(10) & Char(10), "") &
+If(Topic.ExcelMatchFound And Topic.GenAnswer <> "NOT_FOUND", "---" & Char(10) & Char(10), "") &
+If(Topic.GenAnswer <> "NOT_FOUND", "**From the training session:**" & Char(10) & Char(10) & Trim(IfError(Left(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) - 1), Topic.GenAnswer)) & Char(10) & Char(10), "") &
+If(Topic.GenAnswer <> "NOT_FOUND" And Not(IsBlank(Topic.VideoUrl)), "**[Watch the recording](" & Topic.VideoUrl & ")**", "") &
+If(Not(Topic.ExcelMatchFound) And Topic.GenAnswer = "NOT_FOUND", "I couldn't find this in our knowledge base or training transcripts. Try rephrasing your question.", "")
