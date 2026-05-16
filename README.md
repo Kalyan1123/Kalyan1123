@@ -219,3 +219,32 @@ If(Not(Topic.ExcelMatchFound) And Topic.GenAnswer = "NOT_FOUND", "I couldn't fin
 
 
 IfError(Find("NOT_FOUND", Topic.GenAnswer), 0)
+
+
+
+
+Scenario 1 — Excel KB only
+Questions about content that's specifically in your Power Hour Excel (connections, deployments, environments, file moving):
+How do I set up connections in a dedicated environment?
+What's the process for deploying from DEV to PP to PROD?
+How do I move files from SharePoint to OneDrive?
+Expected output: The Excel solution text + the related article links. No video link.
+
+Scenario 2 — Transcripts only
+Questions about training session content (Fabric, Power Apps workshops, Power Automate basics):
+What was covered in the Fabric Power BI Day-3 workshop?
+How does the HTTP with Entra ID Preauthorized connector work?
+Tell me about Power Automate basics
+Expected output: Structured steps extracted from the transcript + a clickable "Watch the recording" hyperlink. No Excel block.
+
+Scenario 3 — Both sources match
+Anything broadly about Power Automate that overlaps both your Excel KB and transcripts:
+How do I trigger a Power Automate flow?
+Tell me about Power Platform connections
+Expected output: Excel block (with articles) + --- separator + transcript block (with video link). The full unified reply.
+
+Scenario 4 — Nothing found
+Something completely unrelated:
+What's the weather like on Mars?
+Who won the cricket world cup in 1992?
+Expected output: The fallback message: "I couldn't find this in our knowledge base or training transcripts. Try rephrasing your question."
