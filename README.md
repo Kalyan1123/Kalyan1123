@@ -248,3 +248,8 @@ Something completely unrelated:
 What's the weather like on Mars?
 Who won the cricket world cup in 1992?
 Expected output: The fallback message: "I couldn't find this in our knowledge base or training transcripts. Try rephrasing your question."
+
+
+
+
+"🐛 DEBUG INFO" & Char(10) & Char(10) & "GenAnswer = " & Topic.GenAnswer & Char(10) & Char(10) & "TranscriptName = " & Topic.TranscriptName & Char(10) & Char(10) & "VideoUrl = " & Topic.VideoUrl
