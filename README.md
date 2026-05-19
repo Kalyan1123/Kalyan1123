@@ -253,3 +253,6 @@ Expected output: The fallback message: "I couldn't find this in our knowledge ba
 
 
 "🐛 DEBUG INFO" & Char(10) & Char(10) & "GenAnswer = " & Topic.GenAnswer & Char(10) & Char(10) & "TranscriptName = " & Topic.TranscriptName & Char(10) & Char(10) & "VideoUrl = " & Topic.VideoUrl
+
+
+And(Not(IsBlank(Topic.GenAnswer)), Topic.GenAnswer <> "NOT_FOUND")
