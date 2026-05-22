@@ -263,3 +263,6 @@ If(Topic.ExcelMatchFound And Not(IsBlank(Topic.GenAnswer)) And Topic.GenAnswer <
 If(Not(IsBlank(Topic.GenAnswer)) And Topic.GenAnswer <> "NOT_FOUND", "**From the training session:**" & Char(10) & Char(10) & Trim(IfError(Left(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) - 1), Topic.GenAnswer)) & Char(10) & Char(10), "") &
 If(Not(IsBlank(Topic.GenAnswer)) And Topic.GenAnswer <> "NOT_FOUND" And Not(IsBlank(Topic.VideoUrl)), "**[Watch the recording](" & Topic.VideoUrl & ")**", "") &
 If(Not(Topic.ExcelMatchFound) And (Topic.GenAnswer = "NOT_FOUND" Or IsBlank(Topic.GenAnswer)), "I couldn't find this in our knowledge base or training transcripts. Try rephrasing your question.", "")
+
+
+Text(And(Not(IsBlank(Topic.GenAnswer)), Topic.GenAnswer <> "NOT_FOUND"))
