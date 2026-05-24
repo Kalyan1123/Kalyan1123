@@ -278,3 +278,6 @@ So I want to... I want you to help me to create a present repeatedly. So I'll gi
 
 
 @and(endsWith(toLower(item()?['{FullPath}']),'.mp4'),contains(toLower(replace(replace(replace(replace(item()?['{FullPath}'],'-',' '),'_',' '),'(',''),')','')),outputs('Clean_Name')))
+
+
+trim(toLower(replace(replace(replace(replace(replace(replace(replace(triggerBody()['text'],decodeUriComponent('%0A'),' '),decodeUriComponent('%0D'),' '),'.txt',''),'-',' '),'_',' '),'(',''),')','')))
