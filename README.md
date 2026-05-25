@@ -281,3 +281,35 @@ So I want to... I want you to help me to create a present repeatedly. So I'll gi
 
 
 trim(toLower(replace(replace(replace(replace(replace(replace(replace(triggerBody()['text'],decodeUriComponent('%0A'),' '),decodeUriComponent('%0D'),' '),'.txt',''),'-',' '),'_',' '),'(',''),')','')))
+
+
+
+
+
+Paste this new one:
+
+With({rest: Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15)}, Trim(Left(rest, IfError(Find(Char(10), rest), Len(rest) + 1) - 1)))
+
+Confirm. Save the topic.
+
+What this does
+
+rest = everything in GenAnswer after TranscriptFile:  (including any junk that follows)
+Find(Char(10), rest) = position of the first newline in rest (which is right after the filename)
+Left(rest, that_position - 1) = takes only the characters before that first newline → just the filename
+IfError(..., Len(rest) + 1) = if there's no newline at all (filename is at the very end), takes the whole thing
+Trim(...) = removes leading/trailing whitespace
+
+For your debug message saying TranscriptName = Introduction to Power BI:
+
+Old formula captured: Introduction to Power BI\n\n[1]: https://... [2]: ...  (798 chars, but newlines made it look short in debug)
+New formula captures: Introduction to Power BI (24 chars, just the filename)
+
+If With() is rejected
+Some Copilot Studio versions don't accept With(). Use this alternative (longer but no With):
+Trim(Left(Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15), IfError(Find(Char(10), Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15)), Len(Topic.GenAnswer)) - 1))
+Same logic, just inlined.
+Verify with an updated debug
+While you're there, also update your debug Send a message formula to show the LENGTH of TranscriptName so we can confirm:
+"DEBUG INFO" & Char(10) & "GenAnswer length = " & Len(Topic.GenAnswer) & Char(10) & "TranscriptName: '" & Topic.TranscriptName & "'" & Char(10) & "TranscriptName length = " & Len(Topic.TranscriptName) & Char(10) & "VideoUrl = " & Topic.VideoUrl
+The quotes around TranscriptName and the length count will make any hidden content obvious. If length = 24 after the fix → 🎉 perfect. If still much larger → we'll iterate.
