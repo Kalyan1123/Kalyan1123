@@ -313,3 +313,6 @@ Verify with an updated debug
 While you're there, also update your debug Send a message formula to show the LENGTH of TranscriptName so we can confirm:
 "DEBUG INFO" & Char(10) & "GenAnswer length = " & Len(Topic.GenAnswer) & Char(10) & "TranscriptName: '" & Topic.TranscriptName & "'" & Char(10) & "TranscriptName length = " & Len(Topic.TranscriptName) & Char(10) & "VideoUrl = " & Topic.VideoUrl
 The quotes around TranscriptName and the length count will make any hidden content obvious. If length = 24 after the fix → 🎉 perfect. If still much larger → we'll iterate.
+
+
+"Request Title" & " ($" & Text('Estimated Cost') & ")"
