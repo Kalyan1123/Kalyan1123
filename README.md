@@ -54,3 +54,9 @@ At the very end, on a new line, include:
 TranscriptFile: <exact filename without the .txt extension>
 
 If the transcripts don't contain an answer to the user's question, reply with the single text NOT_FOUND.
+
+
+
+
+
+"DEBUG INFO" & Char(10) & "UserQuery = '" & Topic.UserQuery & "'" & Char(10) & "GenAnswer length = " & Len(Topic.GenAnswer) & Char(10) & "TranscriptName = '" & Topic.TranscriptName & "'" & Char(10) & "VideoUrl = " & Topic.VideoUrl
