@@ -53,8 +53,49 @@ Steps:
 At the very end, on a new line, include:
 TranscriptFile: <exact filename without the .txt extension>
 
+
+
+
+
+
+Two toggles → repeat error label + border per toggle, add both to submit check.
+Say toggles named Toggle1, Toggle2. Swap for real names.
+Submit button — OnSelect:
+
+Set(varSubmitted, true);
+If(
+    Toggle1.Value && Toggle2.Value,
+    SubmitForm(Form1),
+    false
+)
+
+Submits only when both Yes.
+
+Error label under Toggle1:
+varSubmitted && Toggle1.Value = false
+
+Error label under Toggle2:
+varSubmitted && Toggle2.Value = false
+
+Each toggle own label. Independent. Only the off one turns red.
+
+Border — Toggle1:
+If(varSubmitted && Toggle1.Value = false, Color.Red, RGBA(0, 0, 0, 1))
+
+Border — Toggle2:
+If(varSubmitted && Toggle2.Value = false, Color.Red, RGBA(0, 0, 0, 1))
+
+Cancel — OnSelect:
+Set(varSubmitted, false);
+ResetForm(Form1)
+
+Screen — OnVisible:
+Set(varSubmitted, false)
+
+One flag varSubmitted covers both toggles. No need two flags. Press Submit once → both check at same time.
 If the transcripts don't contain an answer to the user's question, reply with the single text NOT_FOUND.
 
+<img width="612" height="548" alt="image" src="https://github.com/user-attachments/assets/abd6f6f9-a770-4de8-87eb-a4f60b6a3c74" />
 
 
 
