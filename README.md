@@ -161,3 +161,6 @@ Steps:
 
 At the very end, on a new line, include:
 TranscriptFile: <exact filename without the .txt extension>
+
+
+HasRealAnswer (boolean) = And(Not(IsBlank(Topic.GenAnswer)), Find("TranscriptFile:", Topic.GenAnswer) > 0)
