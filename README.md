@@ -485,3 +485,20 @@ Those 5 questions from my previous message — especially the .srt file sample (
 
 Send me that sample and we'll start building the new agent.
 
+
+
+
+
+Stage 1: RETRIEVE
+.srt files → raw content with timestamps
+(messy subtitle format with timing codes)
+
+         ↓
+
+Stage 2: REFINE
+Raw .srt content → Generative AI → polished answer
+(clean, structured, human-readable, timestamps preserved)
+
+         ↓
+
+User sees: beautiful formatted answer with clickable timestamps
