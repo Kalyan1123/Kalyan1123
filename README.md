@@ -502,3 +502,84 @@ Raw .srt content → Generative AI → polished answer
          ↓
 
 User sees: beautiful formatted answer with clickable timestamps
+
+
+
+
+
+
+Everything clear now. Stream player — not direct .mp4.
+
+**Critical detail:** SharePoint Stream uses a different timestamp URL format than simple `?st=`. It uses a base64-encoded JSON parameter:
+
+```
+&nav=eyJwbGF5YmFja09wdGlvbnMiOnsic3RhcnRUaW1lSW5TZWMiOjIyMH19
+```
+
+That base64 decodes to:
+```json
+{"playbackOptions":{"startTimeInSec":220}}
+```
+
+So the full clickable timestamp URL becomes:
+```
+https://Organizationcloud.sharepoint.com/teams/powerhub/_layouts/15/stream.aspx?id=%2Fteams%2Fpowerhub%2FShared%20Documents%2FRecorded%20Tutorials%2F[Category]%2FPublished%2F[Filename]%2Emp4&nav=eyJwbGF5YmFja09wdGlvbnMiOnsic3RhcnRUaW1lSW5TZWMiOjIyMH19
+```
+
+**Timestamp conversion in Power Automate:**
+```
+[00:03:40] 
+→ seconds = 220
+→ JSON = {"playbackOptions":{"startTimeInSec":220}}
+→ base64 encode
+→ append &nav=<base64> to Stream URL
+```
+
+More complex than `?st=`, but fully doable in Power Automate with an expression.
+
+---
+
+**All questions answered. Full picture confirmed:**
+
+| Item | Detail |
+|---|---|
+| Agent | New, standalone |
+| Knowledge source | .vtt files — `/Private Documents/Events/Transcription files/*/test/` |
+| Videos | `/Shared Documents/Recorded Tutorials/*/Published/*.mp4` |
+| `/Published/` | Consistent across all categories |
+| Player | SharePoint Stream (`/_layouts/15/stream.aspx`) |
+| Timestamp URL | `&nav=` + base64-encoded JSON with `startTimeInSec` |
+| Filenames | VTT ↔ MP4 mostly match |
+| Ratio | 1 VTT : 1 video |
+| Multiple results | Yes — show all matching videos, not just one |
+| AI refinement | Single-node first, two-stage if needed |
+| Future addition | Separate document (deferred) |
+
+---
+
+**Ready to build. Here's the sequence:**
+
+**Phase 1 — Agent + Knowledge**
+1. Create new agent in Copilot Studio
+2. Add .vtt folder as knowledge source
+3. Configure generative answers prompt
+4. Test: does AI return answers with timestamps + filenames?
+
+**Phase 2 — Video URL Matching Flow**
+5. Build Power Automate flow to search Recorded Tutorials library
+6. Add folder mapping table (VTT folder → video folder)
+7. Match filenames, construct Stream URLs
+
+**Phase 3 — Timestamp Links**
+8. Parse timestamps from AI response
+9. Convert HH:MM:SS → seconds
+10. Build base64 `&nav=` parameter
+11. Append to Stream URL
+12. Return clickable links to user
+
+**Phase 4 — Polish + Future**
+13. Test across multiple categories
+14. Handle edge cases (filename mismatches)
+15. Connect additional document (later)
+
+Want to start with Phase 1? I'll give exact step-by-step instructions for creating the agent and adding the .vtt knowledge source.
