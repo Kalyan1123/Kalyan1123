@@ -583,3 +583,47 @@ More complex than `?st=`, but fully doable in Power Automate with an expression.
 15. Connect additional document (later)
 
 Want to start with Phase 1? I'll give exact step-by-step instructions for creating the agent and adding the .vtt knowledge source.
+
+
+
+
+
+.
+>
+>
+>
+>
+>
+
+
+
+
+. Does the timestamp URL format actually work?
+The entire feature rests on video_url?st=220 jumping to the right spot. This depends on how your videos are hosted (SharePoint player vs Stream — that's question 4 I keep asking). Different hosts use different parameters:
+
+SharePoint Stream: ?t=220 or &start=220
+Some players: #t=00:03:40
+
+
+2. Will the AI return timestamps reliably?
+
+
+. Multiple files — TranscriptFiles: (plural)
+
+
+
+
+Three diagrams. Topic flow first.Flow 1 — video URL matcher. Runs inside Power Automate.Flow 2 — timestamp link builder. Takes each video URL + its stamps, makes clickable jump links.Three flows mapped.
+
+**Topic flow** — lives in Copilot Studio. Search, check, call flow, show.
+
+**Flow 1 + Flow 2** — both in Power Automate. Shown separate for clarity. Build as ONE flow (Flow 1 part → Flow 2 part runs in sequence). Splitting only if too big.
+
+**Handoff points:**
+- Topic → Flow: `AnswerText` (one string)
+- Flow 1 → Flow 2: video URLs + stamps (internal, same flow)
+- Flow → Topic: final markdown (one string)
+
+**Note on the loops:** Flow 1 loops filenames. Flow 2 loops timestamps. If one video has 3 stamps, inner loop runs 3 times for that video. So real structure = outer loop (videos) with inner loop (stamps inside each). When combined into one flow, Flow 2's loop nests inside Flow 1's loop.
+
+Next move — finish Phase 1 test. Paste the test answer. Confirms generative node returns stamps + `TranscriptFiles:`. Then we build the flow, starting with parse step.
