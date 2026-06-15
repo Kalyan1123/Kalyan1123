@@ -700,3 +700,12 @@ If(Topic.GenAnswer = "NOT_FOUND" Or IsBlank(Topic.GenAnswer),
    "I couldn't find this in our training transcripts. Try rephrasing your question.",
    ""
 )
+
+
+
+1
+1
+1
+
+
+"DEBUG: UserQuery='" & Topic.UserQuery & "' | GenAnswer len=" & Len(Topic.GenAnswer) & " | TranscriptName='" & Topic.TranscriptName & "' | VideoUrl=" & Topic.VideoUrl
