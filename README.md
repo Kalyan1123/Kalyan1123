@@ -677,3 +677,5 @@ If the transcripts don't contain an answer to the user's question, your ENTIRE r
 
 
 And(Not(IsBlank(Topic.GenAnswer)), Topic.GenAnswer <> "NOT_FOUND")
+
+With({rest: Mid(Topic.GenAnswer, Find("TranscriptFile:", Topic.GenAnswer) + 15)}, Trim(Left(rest, IfError(Find(Char(10), rest), Len(rest) + 1) - 1)))
