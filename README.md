@@ -709,3 +709,6 @@ If(Topic.GenAnswer = "NOT_FOUND" Or IsBlank(Topic.GenAnswer),
 
 
 "DEBUG: UserQuery='" & Topic.UserQuery & "' | GenAnswer len=" & Len(Topic.GenAnswer) & " | TranscriptName='" & Topic.TranscriptName & "' | VideoUrl=" & Topic.VideoUrl
+
+
+Answers questions about training sessions, recordings, and tutorials on Power BI, Power Apps, Power Automate, Fabric, Copilot, and related Microsoft tools. Use this for any how-to or informational question.
