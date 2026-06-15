@@ -627,3 +627,28 @@ Three diagrams. Topic flow first.Flow 1 — video URL matcher. Runs inside Power
 **Note on the loops:** Flow 1 loops filenames. Flow 2 loops timestamps. If one video has 3 stamps, inner loop runs 3 times for that video. So real structure = outer loop (videos) with inner loop (stamps inside each). When combined into one flow, Flow 2's loop nests inside Flow 1's loop.
 
 Next move — finish Phase 1 test. Paste the test answer. Confirms generative node returns stamps + `TranscriptFiles:`. Then we build the flow, starting with parse step.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+..
+..
+.
+...
+.
+.
+..
+.
+.
+.
+.
+Node 1 — Trigger
+
+Type: User says a phrase
+Add phrases: how do I, how does, what is, tell me about, explain, power, fabric, help, error, issue
+(More phrases = catches more queries)
