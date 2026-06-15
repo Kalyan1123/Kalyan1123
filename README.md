@@ -674,3 +674,6 @@ At the very end, on a new line, include:
 TranscriptFile: <exact filename without the .txt extension>
 
 If the transcripts don't contain an answer to the user's question, your ENTIRE response must be the single word NOT_FOUND - exactly that, all uppercase, with NO punctuation, NO whitespace, NO quotes, NO other text before or after.
+
+
+And(Not(IsBlank(Topic.GenAnswer)), Topic.GenAnswer <> "NOT_FOUND")
