@@ -1612,3 +1612,8 @@ For every uploaded screenshot:
 * Be concise but descriptive.
 * Ensure the document is suitable for direct conversion into a Microsoft Word document with minimal editing.
 
+
+
+
+
+Hi, so what I wanted to, I want you to update from the above thing for the mobile tools. So I want you to update these things, I mean remove some things which I felt a little bit in the kickstarts. Okay. The thing is, remove this variables part and remove this collections part and remove this security part and remove this design decisions part. And yeah, that's all.
