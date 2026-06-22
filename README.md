@@ -1781,3 +1781,10 @@ Clearly state that these are recommendations for future releases and are not par
 * Use bullets wherever possible.
 * Keep each screen documentation compact and consistent.
 * The final document should be ready for direct export to Microsoft Word with minimal editing.
+
+
+
+
+
+
+"<style>::-webkit-scrollbar { display: none; } * { scrollbar-width: none; -ms-overflow-style: none; }</style>" & ThisItem.Description
