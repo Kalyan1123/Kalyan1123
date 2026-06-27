@@ -1788,3 +1788,15 @@ Clearly state that these are recommendations for future releases and are not par
 
 
 "<style>::-webkit-scrollbar { display: none; } * { scrollbar-width: none; -ms-overflow-style: none; }</style>" & ThisItem.Description
+
+
+
+
+triggerOutputs()?['body/_psquad_relatedlcm_value']
+
+
+dd
+dd
+
+
+if(empty(triggerOutputs()?['body/_psquad_relatedlcm2_value']), outputs('Get_Host_email')?['body/psquad_email'], concat(outputs('Get_Host_email')?['body/psquad_email'], ';', outputs('Get_CoHost_email')?['body/psquad_email']))
