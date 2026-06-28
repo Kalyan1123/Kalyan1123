@@ -1800,3 +1800,24 @@ dd
 
 
 if(empty(triggerOutputs()?['body/_psquad_relatedlcm2_value']), outputs('Get_Host_email')?['body/psquad_email'], concat(outputs('Get_Host_email')?['body/psquad_email'], ';', outputs('Get_CoHost_email')?['body/psquad_email']))
+
+
+
+
+Step 5 — Create event (V4) — Office 365 Outlook
+
+Calendar id: Calendar
+Subject: dynamic → Event Name
+Start time (expression):
+
+formatDateTime(triggerOutputs()?['body/psquad_startdatetime'], 'yyyy-MM-ddTHH:mm:ss')
+
+End time (expression) — using assumed EndDateTime, fix if wrong:
+
+formatDateTime(triggerOutputs()?['body/psquad_enddatetime'], 'yyyy-MM-ddTHH:mm:ss')
+
+Required attendees: dynamic → Outputs (of Attendees compose)
+Body: Session created. Teams join link included.
+Is online meeting: Yes
+Online meeting provider: teamsForBusiness
+Show as: Busy
